@@ -68,7 +68,7 @@ EyeGuard-XAI/
 ├── backend/
 ├── frontend/
 ├── datasets/
-├──Presentations
+├──Presentations/
 ├── notebooks/
 ├── research/
 ├── docs/
