@@ -105,7 +105,7 @@ This system is intended for educational, research, and screening purposes only. 
 
 ---
 
-## Authors
+## Developers
 
 * Muhammed Usman
 * Talha Hanif
