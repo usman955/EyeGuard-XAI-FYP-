@@ -1,113 +1,122 @@
-# EyeGuard-XAI 👁️
+# EyeGuard-XAI
 
-Reliable & Explainable Retinal Disease Screening System using Artificial Intelligence.
+Reliable & Explainable Retinal Disease Screening System using Artificial Intelligence
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 EyeGuard-XAI is a Final Year Project focused on early retinal disease screening using deep learning and Explainable AI (XAI).
 
-The system analyzes retinal fundus images and predicts possible eye diseases while also generating explainable heatmaps to improve transparency and trust in AI predictions.
+The system analyzes retinal fundus images to predict possible eye diseases and generates explainable heatmaps to improve transparency and trust in AI predictions.
 
-This platform includes:
+The platform includes:
 
-- 👨‍⚕️ Doctor Mode
-- 👤 Simple User Mode
-- 🧠 AI-Based Disease Prediction
-- 🔥 Grad-CAM Explainability
-- 💬 Educational Chatbot
-- 📊 Confidence & Risk Analysis
-
----
-
-## 🎯 Objectives
-
-- Develop a deep learning system for retinal disease screening
-- Integrate Explainable AI using Grad-CAM
-- Provide role-based interfaces
-- Improve awareness through educational chatbot support
-- Evaluate model reliability and performance
+* Doctor Mode
+* User Mode
+* AI-Based Disease Prediction
+* Grad-CAM Explainability
+* Educational Chatbot
+* Confidence and Risk Analysis
 
 ---
 
-## 🧠 Target Diseases
+## Objectives
 
-- Diabetic Retinopathy
-- Age-Related Macular Degeneration (AMD)
-- Glaucoma Indicators
-- Hypertensive Retinopathy
+* Develop a deep learning system for retinal disease screening
+* Integrate Explainable AI using Grad-CAM
+* Provide role-based interfaces
+* Improve awareness through an educational chatbot
+* Evaluate model reliability and performance
 
 ---
 
-## 🛠️ Technologies
+## Target Diseases
+
+* Diabetic Retinopathy
+* Age-Related Macular Degeneration (AMD)
+* Glaucoma Indicators
+* Hypertensive Retinopathy
+
+---
+
+## Technologies
 
 ### AI / Backend
-- Python
-- FastAPI
-- OpenCV
-- PyTorch / TensorFlow
-- Grad-CAM
+
+* Python
+* FastAPI
+* OpenCV
+* PyTorch / TensorFlow
+* Grad-CAM
 
 ### Frontend
-- React Native
+
+* React Native
 
 ### Database
-- PostgreSQL
+
+* PostgreSQL
 
 ### Chatbot
-- Ollama / API-based Assistant
+
+* Ollama or API-based assistant
 
 ---
 
-## 📂 Planned Project Structure
+## Project Structure
 
 ```bash
 EyeGuard-XAI/
 │
-├── backend/
-├── frontend/
+├── eyeguard-web/          # React Web Application
+│   ├── src/               # Frontend components and logic
+│   └── server/            # Express.js API server & Prisma DB
+├── eyeguard-mobile/       # Expo Mobile Application
+├── eyeguard-backend/      # FastAPI ML Backend & Chatbot
+├── install.sh             # Dependency installation script
+└── run.sh                 # Unified project execution script
 ├── datasets/
-├── notebooks/
-├── research/
+├── Presentations/
+├── research Papers/
 ├── docs/
 └── README.md
 ```
 
 ---
 
-## 📊 Dataset Sources
+## Dataset Sources
 
-- EyePACS
-- APTOS
-
----
-
-## 🚀 Features
-
-- Multi-disease retinal screening
-- Explainable AI heatmaps
-- Educational chatbot
-- Role-based dashboards
-- Confidence-aware predictions
-- Cloud deployment support
+* EyePACS
+* APTOS
 
 ---
 
-## ⚠️ Disclaimer
+## Features
 
-This system is intended for educational, research, and screening assistance purposes only. It is NOT a replacement for professional medical diagnosis.
-
----
-
-## 👨‍💻 Authors
-
-- Muhammed Usman
-- Talha Hanif
+* Multi-disease retinal screening
+* Explainable AI heatmaps
+* Educational chatbot
+* Role-based dashboards
+* Confidence-aware predictions
+* Cloud deployment support
 
 ---
 
-## 📅 Project Timeline
+## Disclaimer
 
-2026 Final Year Project  
+This system is intended for educational, research, and screening purposes only. It is not a replacement for professional medical diagnosis.
+
+---
+
+## Developers
+
+* Muhammed Usman
+* Talha Hanif
+
+---
+
+## Project Timeline
+
+Final Year Project – 2026
 FAST University
