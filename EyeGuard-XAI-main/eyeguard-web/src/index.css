@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Material Icons Setup */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.material-symbols-outlined[data-weight="fill"] {
+    font-variation-settings: 'FILL' 1;
+}
+
+/* Organic Wave Background Texture */
+.bg-organic-wave {
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 C150,150 350,-50 500,50 L500,0 L0,0 Z' fill='rgba(147, 72, 65, 0.03)'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.organic-wave {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%235d1f1a' fill-opacity='0.05' d='M0,192L48,197.3C96,203,192,213,288,197.3C384,181,480,139,576,144C672,149,768,203,864,224C960,245,1056,235,1152,208C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+}
+
+.organic-wave-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='1440' height='320' viewBox='0 0 1440 320' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 320L48 293.3C96 267 192 213 288 192C384 171 480 181 576 197.3C672 213 768 235 864 224C960 213 1056 171 1152 144C1248 117 1344 107 1392 101.3L1440 96V0H1392C1344 0 1248 0 1152 0C1056 0 960 0 864 0C768 0 672 0 576 0C480 0 384 0 288 0C192 0 96 0 48 0H0V320Z' fill='%23ffb4ab' fill-opacity='0.1'/%3E%3C/svg%3E");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Grad-CAM Overlay Simulation */
+.grad-cam-overlay {
+    background: linear-gradient(135deg, rgba(255,0,0,0.4) 0%, rgba(255,255,0,0.5) 50%, rgba(0,0,255,0.2) 100%);
+    mix-blend-mode: multiply;
+}
+
+/* Utilities */
+.glassmorphism-blur {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+}
+
+.tap-highlight-transparent {
+    -webkit-tap-highlight-color: transparent;
+}
