@@ -69,12 +69,16 @@ The platform includes:
 ```bash
 EyeGuard-XAI/
 │
-├── backend/
-├── frontend/
+├── eyeguard-web/          # React Web Application
+│   ├── src/               # Frontend components and logic
+│   └── server/            # Express.js API server & Prisma DB
+├── eyeguard-mobile/       # Expo Mobile Application
+├── eyeguard-backend/      # FastAPI ML Backend & Chatbot
+├── install.sh             # Dependency installation script
+└── run.sh                 # Unified project execution script
 ├── datasets/
 ├── Presentations/
-├── notebooks/
-├── research/
+├── research Papers/
 ├── docs/
 └── README.md
 ```
