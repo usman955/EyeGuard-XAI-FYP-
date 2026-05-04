@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: mockAI.js
+ * Location: utils
+ * Purpose: Utility functions, mock data, and helpers for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 // Simulates AI inference on an uploaded image file
 // Returns mock probabilities for diseases and mock heatmap parameters
 

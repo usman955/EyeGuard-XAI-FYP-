@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: ScreeningScreen.js
+ * Location: screens
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Alert, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
@@ -67,6 +76,10 @@ const ScreeningScreen = ({ navigation }) => {
             <TouchableOpacity style={styles.secondaryBtn} onPress={() => pickImage(false)}>
               <ImageIcon color="#5D1F1A" size={20} style={{ marginRight: 8 }} />
               <Text style={styles.secondaryBtnText}>Choose Gallery</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.sampleBtn} onPress={() => setImage(Image.resolveAssetSource(require('../../assets/sample_retina.png')).uri)}>
+              <Text style={styles.sampleBtnText}>Load Sample Scan</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -178,6 +191,19 @@ const styles = StyleSheet.create({
     color: '#5D1F1A',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  sampleBtn: {
+    backgroundColor: 'transparent',
+    borderRadius: 20,
+    padding: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sampleBtnText: {
+    color: '#64748b',
+    fontSize: 14,
+    textDecorationLine: 'underline',
   },
   previewSection: {
     flex: 1,

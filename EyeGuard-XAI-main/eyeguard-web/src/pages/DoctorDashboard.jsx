@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: DoctorDashboard.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
@@ -42,7 +51,7 @@ const DoctorDashboard = () => {
           
           {/* Scan Preview Canvas */}
           <div className="col-span-1 md:col-span-2 rounded-[32px] overflow-hidden shadow-md border border-outline-variant/30 relative h-[300px] group">
-            <img alt="Retinal fundus scan" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/images/retinal_scan.png" />
+            <img alt="Retinal fundus scan" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/sample_retina.png" />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent flex flex-col justify-end p-lg">
               <h3 className="font-h3 text-h3 text-white mb-1">Latest Screening Activity</h3>
               <p className="font-body-md text-white/70 mb-4">AI flagged potential abnormalities in patient ID-7842. Review recommended.</p>

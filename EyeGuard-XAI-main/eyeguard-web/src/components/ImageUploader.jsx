@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: ImageUploader.jsx
+ * Location: components
+ * Purpose: Reusable UI component for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { useState, useRef } from 'react';
 
 const ImageUploader = ({ onImageSelect, patientIdRequired = false }) => {
@@ -135,6 +144,20 @@ const ImageUploader = ({ onImageSelect, patientIdRequired = false }) => {
               <span>•</span>
               <span>DICOM compatible</span>
             </div>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                fetch('/sample_retina.png')
+                  .then(res => res.blob())
+                  .then(blob => {
+                    const file = new File([blob], "sample_retina.png", { type: "image/png" });
+                    processFile(file);
+                  });
+              }}
+              className="mt-xs text-xs font-medium text-primary hover:text-primary-container transition-colors underline underline-offset-4 decoration-primary/30 hover:decoration-primary"
+            >
+              Load sample retinal scan
+            </button>
           </div>
         </div>
       ) : (

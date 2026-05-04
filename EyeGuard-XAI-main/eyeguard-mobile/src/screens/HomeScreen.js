@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: HomeScreen.js
+ * Location: screens
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useAuth } from '../context/AuthContext';

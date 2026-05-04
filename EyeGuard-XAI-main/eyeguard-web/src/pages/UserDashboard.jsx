@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: UserDashboard.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -22,7 +31,7 @@ const UserDashboard = () => {
             <img 
               alt="Medical illustration" 
               className="w-full h-auto object-cover" 
-              src="/images/retinal_scan.png" 
+              src="/sample_retina.png" 
             />
           </div>
         </div>

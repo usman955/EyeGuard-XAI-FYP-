@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: index.js
+ * Location: server
+ * Purpose: Express.js server logic and database integration for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 const express = require('express');
 const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
@@ -31,14 +40,19 @@ const authenticate = (req, res, next) => {
 // --- Auth Routes ---
 
 app.post('/api/auth/register', async (req, res) => {
-  const { email, password, name, role } = req.body;
+  const { email, password, name, role, license } = req.body;
+  
+  if (role === 'doctor' && !license) {
+    return res.status(400).json({ error: 'Medical license is required for doctors' });
+  }
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
-      data: { email, password: hashedPassword, name, role }
+      data: { email, password: hashedPassword, name, role, license }
     });
     const token = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET);
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role, license: user.license } });
   } catch (err) {
     res.status(400).json({ error: 'User already exists' });
   }

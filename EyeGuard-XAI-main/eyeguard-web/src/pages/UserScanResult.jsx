@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: UserScanResult.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,7 +57,7 @@ const UserScanResult = () => {
             <h3 className="font-h3 text-h3 text-primary">What We Found</h3>
           </div>
           <div className="flex-grow flex flex-col">
-            <img alt="Scan Image" className="w-full h-48 object-cover rounded-lg mb-md shadow-sm" src="/images/retinal_scan.png" />
+            <img alt="Scan Image" className="w-full h-48 object-cover rounded-lg mb-md shadow-sm" src="/sample_retina.png" />
             <ul className="space-y-sm font-body-md text-body-md text-on-surface-variant flex-grow">
               <li className="flex items-start">
                 <span className="material-symbols-outlined text-primary-fixed-dim mr-sm mt-xs">check_circle</span>

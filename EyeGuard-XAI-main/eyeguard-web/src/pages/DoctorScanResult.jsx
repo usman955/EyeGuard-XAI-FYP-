@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: DoctorScanResult.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { useState } from 'react';
 
 const DoctorScanResult = () => {
@@ -42,7 +51,7 @@ const DoctorScanResult = () => {
             {/* Main Interactive Viewer */}
             <div className="relative rounded-lg overflow-hidden border border-outline-variant/30 aspect-[2] bg-surface-variant flex items-center justify-center">
               {/* Base Original Scan */}
-              <img alt="Retinal fundus scan image" className="absolute inset-0 w-full h-full object-cover" src="/images/retinal_scan.png" />
+              <img alt="Retinal fundus scan image" className="absolute inset-0 w-full h-full object-cover" src="/sample_retina.png" />
               
               {/* Grad-CAM Overlay */}
               <img 
@@ -117,6 +126,18 @@ const DoctorScanResult = () => {
                   <div className="h-full bg-secondary rounded-full" style={{ width: '12.8%' }}></div>
                 </div>
               </div>
+            </div>
+            
+            {/* XAI Assistant Link */}
+            <div className="mt-6 pt-6 border-t border-outline-variant/30">
+              <p className="font-body-md text-sm text-on-surface-variant mb-3">Need deeper clinical insights on these probabilities?</p>
+              <a 
+                href="/chatbot?topic=clinical_review" 
+                className="w-full py-3 bg-[#5D1F1A] hover:bg-[#410a07] text-white rounded-xl font-body-md shadow-md flex justify-center items-center gap-2 transition-colors"
+              >
+                <span className="material-symbols-outlined text-[20px]">psychiatry</span>
+                Discuss with XAI Assistant
+              </a>
             </div>
           </div>
         </div>

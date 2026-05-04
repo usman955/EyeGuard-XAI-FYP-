@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: GlassCard.js
+ * Location: components
+ * Purpose: Reusable UI component for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';

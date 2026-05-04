@@ -16,6 +16,7 @@ model User {
   password  String
   name      String
   role      String   @default("user") // "doctor" or "user"
+  license   String?  // Required only for doctors
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   

@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: theme.js
+ * Location: utils
+ * Purpose: Utility functions, mock data, and helpers for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 export const theme = {
   colors: {
     background: '#050b14',

@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: DoctorHistory.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 

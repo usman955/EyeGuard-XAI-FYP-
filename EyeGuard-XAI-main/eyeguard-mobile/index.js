@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: index.js
+ * Location: eyeguard-mobile
+ * Purpose: Core configuration, initialization, or entry point for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import { registerRootComponent } from 'expo';
 
 import App from './App';

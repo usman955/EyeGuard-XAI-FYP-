@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: Navbar.jsx
+ * Location: components
+ * Purpose: Reusable UI component for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
