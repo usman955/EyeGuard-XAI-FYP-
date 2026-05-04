@@ -78,7 +78,7 @@ const ScreeningScreen = ({ navigation }) => {
               <Text style={styles.secondaryBtnText}>Choose Gallery</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.sampleBtn} onPress={() => setImage(Image.resolveAssetSource(require('../../assets/sample_retina.png')).uri)}>
+            <TouchableOpacity style={styles.sampleBtn} onPress={() => setImage(Image.resolveAssetSource(require('../../assets/retinal_scan.png')).uri)}>
               <Text style={styles.sampleBtnText}>Load Sample Scan</Text>
             </TouchableOpacity>
           </View>

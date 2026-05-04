@@ -57,7 +57,7 @@ const Login = () => {
             <img 
               alt="EyeGuard AI concept" 
               className="w-full h-auto object-cover aspect-[1.54]" 
-              src="/sample_retina.png" 
+              src="/images/retinal_scan.png" 
             />
           </div>
         </div>

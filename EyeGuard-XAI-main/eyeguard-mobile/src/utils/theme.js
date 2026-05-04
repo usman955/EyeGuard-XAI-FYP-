@@ -1,44 +1,51 @@
-/**
- * ============================================================================
- * File: theme.js
- * Location: utils
- * Purpose: Utility functions, mock data, and helpers for the EyeGuard-XAI Mobile Application.
- * This file is part of the EyeGuard-XAI automated screening system.
- * ============================================================================
- */
-
 export const theme = {
   colors: {
-    background: '#050b14',
-    backgroundSecondary: '#101c2e',
-    surface: 'rgba(20, 30, 48, 0.4)',
-    surfaceHover: 'rgba(30, 45, 70, 0.6)',
-    surfaceBorder: 'rgba(255, 255, 255, 0.08)',
-    
-    accentPrimary: '#00d4ff',
-    accentSecondary: '#0088ff',
-    
-    success: '#00e676',
-    warning: '#ffb300',
-    danger: '#ff1744',
-    info: '#29b6f6',
-    
-    textPrimary: '#ffffff',
-    textSecondary: 'rgba(255, 255, 255, 0.7)',
-    textMuted: 'rgba(255, 255, 255, 0.4)',
+    primary: '#0ea5e9', // light blue
+    primaryDark: '#0284c7',
+    primaryLight: '#e0f2fe',
+    secondary: '#0d9488', // teal
+    secondaryLight: '#ccfbf1',
+    background: '#f8fafc',
+    surface: '#ffffff',
+    text: '#0f172a',
+    textSecondary: '#64748b',
+    border: '#e2e8f0',
+    danger: '#ef4444',
+    dangerLight: '#fee2e2',
+    warning: '#f59e0b',
+    warningLight: '#fef3c7',
+    success: '#10b981',
+    successLight: '#d1fae5',
   },
   spacing: {
     xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
+    s: 8,
+    m: 16,
+    l: 24,
     xl: 32,
-    xxl: 48,
+    xxl: 40,
   },
-  radius: {
-    sm: 8,
-    md: 16,
-    lg: 24,
-    full: 9999,
+  borderRadius: {
+    s: 4,
+    m: 8,
+    l: 16,
+    xl: 24,
+    xxl: 32,
+  },
+  shadows: {
+    card: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.05,
+      shadowRadius: 10,
+      elevation: 3,
+    },
+    button: {
+      shadowColor: '#0ea5e9',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.2,
+      shadowRadius: 8,
+      elevation: 4,
+    }
   }
 };

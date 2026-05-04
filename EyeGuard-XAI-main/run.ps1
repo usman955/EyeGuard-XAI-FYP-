@@ -5,7 +5,7 @@
 # ==============================================================================
 
 # Define the absolute root directory of the project
-$ROOT_DIR = "c:\Users\Talha Hanif\EyeGuard-XAI-FYP-\EyeGuard-XAI-main"
+$ROOT_DIR = $PSScriptRoot
 
 Write-Host "Starting EyeGuard-XAI project..."
 Write-Host "Four terminal windows will open for each service."

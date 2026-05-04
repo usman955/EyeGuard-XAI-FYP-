@@ -51,7 +51,7 @@ const DoctorScanResult = () => {
             {/* Main Interactive Viewer */}
             <div className="relative rounded-lg overflow-hidden border border-outline-variant/30 aspect-[2] bg-surface-variant flex items-center justify-center">
               {/* Base Original Scan */}
-              <img alt="Retinal fundus scan image" className="absolute inset-0 w-full h-full object-cover" src="/sample_retina.png" />
+              <img alt="Retinal fundus scan image" className="absolute inset-0 w-full h-full object-cover" src="/images/retinal_scan.png" />
               
               {/* Grad-CAM Overlay */}
               <img 
@@ -125,6 +125,20 @@ const DoctorScanResult = () => {
                 <div className="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
                   <div className="h-full bg-secondary rounded-full" style={{ width: '12.8%' }}></div>
                 </div>
+              </div>
+            </div>
+            
+            {/* XAI Clinical Interpretation Panel */}
+            <div className="mt-6 pt-6 border-t border-outline-variant/30">
+              <h3 className="font-h3 text-h3 text-on-surface mb-3 flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">psychology</span> XAI Clinical Interpretation
+              </h3>
+              <div className="bg-surface-variant/30 p-4 rounded-lg border border-outline-variant/50">
+                <p className="font-body-md text-sm text-on-surface leading-relaxed">
+                  <strong className="text-primary">Inference Path:</strong> The Grad-CAM activation heatmap indicates a high concentration of salient features in the superior temporal quadrant <span className="font-data-mono bg-surface-variant px-1 rounded text-xs">weight: 0.85</span>. 
+                  <br/><br/>
+                  The primary regions of interest correlate strongly with the morphological presence of microaneurysms and hard exudates. The convolutional neural network's final dense layer activations strongly favor Diabetic Retinopathy, localized primarily along the vascular arcades. No significant glaucomatous cupping or macular drusen were heavily weighted in the forward pass.
+                </p>
               </div>
             </div>
             

@@ -32,7 +32,7 @@ const DoctorRetinalScans = () => {
           <div key={i} className="bg-surface-container-lowest rounded-[32px] border border-outline-variant/30 shadow-sm overflow-hidden flex flex-col hover:border-primary/50 transition-all group">
             <div className="h-48 overflow-hidden relative">
               <img 
-                src="/sample_retina.png" 
+                src="/images/retinal_scan.png" 
                 alt="Scan Thumbnail" 
                 className="w-full h-full object-cover transition-transform group-hover:scale-110 duration-500"
               />

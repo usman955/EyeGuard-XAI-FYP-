@@ -49,7 +49,7 @@ const Landing = () => {
               <img 
                 alt="EyeGuard AI illustration" 
                 className="w-full h-auto object-cover aspect-[4/5]" 
-                src="/sample_retina.png" 
+                src="/images/retinal_scan.png" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
             </div>

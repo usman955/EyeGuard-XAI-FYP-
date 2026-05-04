@@ -147,10 +147,10 @@ const ImageUploader = ({ onImageSelect, patientIdRequired = false }) => {
             <button 
               onClick={(e) => {
                 e.stopPropagation();
-                fetch('/sample_retina.png')
+                fetch('/images/retinal_scan.png')
                   .then(res => res.blob())
                   .then(blob => {
-                    const file = new File([blob], "sample_retina.png", { type: "image/png" });
+                    const file = new File([blob], "retinal_scan.png", { type: "image/png" });
                     processFile(file);
                   });
               }}

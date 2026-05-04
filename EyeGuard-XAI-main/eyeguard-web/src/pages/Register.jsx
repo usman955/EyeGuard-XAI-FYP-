@@ -35,6 +35,7 @@ const Register = () => {
     if (hasNumber) score++;
     if (hasSpecial) score++;
     
+    if (pass.length >= 10 && score === 4) return 'Very Strong';
     if (pass.length >= 8 && score >= 3) return 'Strong';
     if (pass.length >= 6 && score >= 2) return 'Good';
     return 'Weak';
@@ -202,11 +203,12 @@ const Register = () => {
               {password && (
                 <div className="flex items-center gap-xs mt-1">
                   <div className="flex-1 flex gap-1 h-1.5">
-                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Weak' ? 'bg-error' : passwordStrength === 'Good' ? 'bg-amber-400' : passwordStrength === 'Strong' ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
-                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Good' ? 'bg-amber-400' : passwordStrength === 'Strong' ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
-                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Strong' ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
+                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Weak' ? 'bg-error' : passwordStrength === 'Good' ? 'bg-amber-400' : (passwordStrength === 'Strong' || passwordStrength === 'Very Strong') ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
+                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Good' ? 'bg-amber-400' : (passwordStrength === 'Strong' || passwordStrength === 'Very Strong') ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
+                    <div className={`flex-1 rounded-full transition-colors ${(passwordStrength === 'Strong' || passwordStrength === 'Very Strong') ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
+                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Very Strong' ? 'bg-emerald-600' : 'bg-surface-variant'}`}></div>
                   </div>
-                  <span className={`text-[10px] font-bold uppercase tracking-widest ${passwordStrength === 'Weak' ? 'text-error' : passwordStrength === 'Good' ? 'text-amber-500' : 'text-emerald-600'}`}>
+                  <span className={`text-[10px] font-bold uppercase tracking-widest ${passwordStrength === 'Weak' ? 'text-error' : passwordStrength === 'Good' ? 'text-amber-500' : passwordStrength === 'Strong' ? 'text-emerald-500' : 'text-emerald-700'}`}>
                     {passwordStrength}
                   </span>
                 </div>

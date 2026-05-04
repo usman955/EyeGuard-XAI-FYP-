@@ -46,6 +46,16 @@ const UserScanResult = () => {
         <p className="font-body-lg text-body-lg text-on-surface max-w-2xl mt-sm">
           Our AI has analyzed your recent scan. While there are no immediate critical issues, we noticed a few areas that could use a closer look from a professional.
         </p>
+        
+        {/* Simple AI Explanation */}
+        <div className="mt-lg w-full bg-surface p-md rounded-xl border border-primary/20 text-left">
+          <h3 className="font-h3 text-h3 text-primary mb-2 flex items-center gap-2">
+            <span className="material-symbols-outlined">psychology</span> How the AI Made Its Decision
+          </h3>
+          <p className="font-body-md text-on-surface-variant leading-relaxed">
+            The AI looked closely at your eye scan. It highlighted a few tiny spots near the upper blood vessels that look a little different than usual. These spots are very small, but they tell the AI that there might be some early signs of stress in the eye (like tiny fluid leaks). Because the AI noticed this, we recommend having a human eye doctor take a quick look just to be safe. There is nothing to panic about, but catching these tiny changes early is great for your eye health!
+          </p>
+        </div>
       </section>
       
       {/* Explanation Grid */}
@@ -57,7 +67,7 @@ const UserScanResult = () => {
             <h3 className="font-h3 text-h3 text-primary">What We Found</h3>
           </div>
           <div className="flex-grow flex flex-col">
-            <img alt="Scan Image" className="w-full h-48 object-cover rounded-lg mb-md shadow-sm" src="/sample_retina.png" />
+            <img alt="Scan Image" className="w-full h-48 object-cover rounded-lg mb-md shadow-sm" src="/images/retinal_scan.png" />
             <ul className="space-y-sm font-body-md text-body-md text-on-surface-variant flex-grow">
               <li className="flex items-start">
                 <span className="material-symbols-outlined text-primary-fixed-dim mr-sm mt-xs">check_circle</span>

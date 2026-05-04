@@ -9,10 +9,8 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 
 const AuthContext = createContext(null);
-const API_URL = 'http://10.0.2.2:5000/api'; // Android Emulator local IP
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -25,10 +23,8 @@ export const AuthProvider = ({ children }) => {
   const loadStoredData = async () => {
     try {
       const storedUser = await AsyncStorage.getItem('eyeguard_user');
-      const token = await AsyncStorage.getItem('eyeguard_token');
-      if (storedUser && token) {
+      if (storedUser) {
         setUser(JSON.parse(storedUser));
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       }
     } catch (e) {
       console.error("Failed to load auth data", e);
@@ -38,29 +34,45 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    try {
-      const response = await axios.post(`${API_URL}/auth/login`, { email, password });
-      const { user, token } = response.data;
-      
-      setUser(user);
-      await AsyncStorage.setItem('eyeguard_user', JSON.stringify(user));
-      await AsyncStorage.setItem('eyeguard_token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      return user;
-    } catch (err) {
-      throw new Error(err.response?.data?.error || 'Login failed');
+    // Mock login based on email
+    let role = 'user';
+    if (email.includes('doctor')) {
+      role = 'doctor';
     }
+
+    const mockUser = {
+      id: 'usr_123',
+      name: role === 'doctor' ? 'Dr. Smith' : 'John Doe',
+      email: email,
+      role: role
+    };
+
+    setUser(mockUser);
+    await AsyncStorage.setItem('eyeguard_user', JSON.stringify(mockUser));
+    return mockUser;
+  };
+
+  const signup = async (userData) => {
+    // userData contains { name, email, password, role, licenseNumber (if doctor) }
+    const mockUser = {
+      id: 'usr_456',
+      name: userData.name,
+      email: userData.email,
+      role: userData.role || 'user'
+    };
+
+    setUser(mockUser);
+    await AsyncStorage.setItem('eyeguard_user', JSON.stringify(mockUser));
+    return mockUser;
   };
 
   const logout = async () => {
     setUser(null);
     await AsyncStorage.removeItem('eyeguard_user');
-    await AsyncStorage.removeItem('eyeguard_token');
-    delete axios.defaults.headers.common['Authorization'];
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

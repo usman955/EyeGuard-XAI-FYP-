@@ -31,7 +31,7 @@ const UserDashboard = () => {
             <img 
               alt="Medical illustration" 
               className="w-full h-auto object-cover" 
-              src="/sample_retina.png" 
+              src="/images/retinal_scan.png" 
             />
           </div>
         </div>
