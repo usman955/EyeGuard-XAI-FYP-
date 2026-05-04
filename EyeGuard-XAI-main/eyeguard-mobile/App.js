@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: App.js
+ * Location: eyeguard-mobile
+ * Purpose: Core configuration, initialization, or entry point for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -68,13 +77,10 @@ const AppContent = () => {
     );
   }
 
-  // Bypassing login for development as per user request
-  const isDevMode = true;
-
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {(!user && !isDevMode) ? (
+        {!user ? (
           <Stack.Screen name="Login" component={LoginScreen} />
         ) : (
           <Stack.Screen name="Main" component={TabNavigator} />

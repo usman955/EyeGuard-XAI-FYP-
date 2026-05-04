@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: AppNavigator.js
+ * Location: navigation
+ * Purpose: Core configuration, initialization, or entry point for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../context/AuthContext';

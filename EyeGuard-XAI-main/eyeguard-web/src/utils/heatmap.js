@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: heatmap.js
+ * Location: utils
+ * Purpose: Utility functions, mock data, and helpers for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 // Utility to draw a simulated Grad-CAM heatmap over an image on a canvas
 
 export const drawHeatmap = (canvas, imageSrc, hotspots) => {

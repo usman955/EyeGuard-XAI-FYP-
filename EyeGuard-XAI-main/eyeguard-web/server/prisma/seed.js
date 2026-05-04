@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: seed.js
+ * Location: prisma
+ * Purpose: Express.js server logic and database integration for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
 

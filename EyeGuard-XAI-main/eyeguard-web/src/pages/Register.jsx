@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: Register.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -6,9 +15,36 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('');
   const [role, setRole] = useState('user'); // 'user' or 'doctor'
+  const [license, setLicense] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
+  const calculatePasswordStrength = (pass) => {
+    if (!pass) return '';
+    if (pass.length < 6) return 'Weak';
+    const hasUpper = /[A-Z]/.test(pass);
+    const hasLower = /[a-z]/.test(pass);
+    const hasNumber = /[0-9]/.test(pass);
+    const hasSpecial = /[^A-Za-z0-9]/.test(pass);
+    
+    let score = 0;
+    if (hasUpper) score++;
+    if (hasLower) score++;
+    if (hasNumber) score++;
+    if (hasSpecial) score++;
+    
+    if (pass.length >= 8 && score >= 3) return 'Strong';
+    if (pass.length >= 6 && score >= 2) return 'Good';
+    return 'Weak';
+  };
+
+  const handlePasswordChange = (e) => {
+    const val = e.target.value;
+    setPassword(val);
+    setPasswordStrength(calculatePasswordStrength(val));
+  };
   
   const { register } = useAuth();
   const navigate = useNavigate();
@@ -16,10 +52,21 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    
+    if (role === 'doctor' && !license.trim()) {
+      setError('A valid Medical License Number is required for professional accounts.');
+      return;
+    }
+    
+    if (passwordStrength === 'Weak') {
+      setError('Please choose a stronger password before continuing.');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      const user = await register(name, email, password, role);
+      const user = await register(name, email, password, role, license);
       if (user.role === 'doctor') {
         navigate('/dashboard/doctor');
       } else {
@@ -118,6 +165,23 @@ const Register = () => {
                 />
               </div>
             </div>
+
+            {role === 'doctor' && (
+              <div className="flex flex-col gap-xs mt-xs animate-fade-in">
+                <label className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Medical License Number <span className="text-error">*</span></label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant">badge</span>
+                  <input 
+                    className="w-full bg-surface-container border-b-2 border-surface-variant px-md py-sm pl-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary-container focus:bg-surface-container-low transition-colors rounded-t-md" 
+                    placeholder="e.g. MD-12345678" 
+                    type="text"
+                    value={license}
+                    onChange={(e) => setLicense(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+            )}
             
             <div className="flex flex-col gap-xs mt-sm">
               <label className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Password</label>
@@ -128,11 +192,25 @@ const Register = () => {
                   placeholder="••••••••" 
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handlePasswordChange}
                   required
                   minLength={6}
                 />
               </div>
+              
+              {/* Password Strength Indicator */}
+              {password && (
+                <div className="flex items-center gap-xs mt-1">
+                  <div className="flex-1 flex gap-1 h-1.5">
+                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Weak' ? 'bg-error' : passwordStrength === 'Good' ? 'bg-amber-400' : passwordStrength === 'Strong' ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
+                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Good' ? 'bg-amber-400' : passwordStrength === 'Strong' ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
+                    <div className={`flex-1 rounded-full transition-colors ${passwordStrength === 'Strong' ? 'bg-emerald-500' : 'bg-surface-variant'}`}></div>
+                  </div>
+                  <span className={`text-[10px] font-bold uppercase tracking-widest ${passwordStrength === 'Weak' ? 'text-error' : passwordStrength === 'Good' ? 'text-amber-500' : 'text-emerald-600'}`}>
+                    {passwordStrength}
+                  </span>
+                </div>
+              )}
             </div>
 
             <button 

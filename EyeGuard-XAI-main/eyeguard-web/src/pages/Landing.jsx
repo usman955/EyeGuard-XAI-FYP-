@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: Landing.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +18,7 @@ const Landing = () => {
         <div className="grid grid-cols-1 md:grid-cols-8 gap-lg items-center mb-xl pt-16">
           <div className="md:col-span-5 flex flex-col gap-md">
             <div className="inline-block px-4 py-1 rounded-full bg-primary-container/10 text-primary-container font-label-caps text-[10px] uppercase tracking-wider w-fit">
-              ✨ Next-Gen AI Screening Platform
+               Next-Gen AI Screening Platform
             </div>
             <h1 className="font-h1 text-h1 text-on-surface leading-tight">
               See The Future With <br/>
@@ -40,7 +49,7 @@ const Landing = () => {
               <img 
                 alt="EyeGuard AI illustration" 
                 className="w-full h-auto object-cover aspect-[4/5]" 
-                src="/images/retinal_scan.png" 
+                src="/sample_retina.png" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
             </div>

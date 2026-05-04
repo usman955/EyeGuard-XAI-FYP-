@@ -1,11 +1,22 @@
+/**
+ * ============================================================================
+ * File: ChatScreen.js
+ * Location: screens
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, ActivityIndicator } from 'react-native';
 import { Send, Bot, User } from 'lucide-react-native';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const OPENROUTER_API_KEY = ''; // Add your OpenRouter API Key here
 
 const ChatScreen = () => {
+  const { user } = useAuth();
   const [messages, setMessages] = useState([
     { text: "Hello! I'm EyeGuard AI. How can I help you with your retinal health today?", isBot: true }
   ]);
@@ -27,7 +38,9 @@ const ChatScreen = () => {
         messages: [
           {
             role: "system",
-            content: "You are EyeGuard AI Assistant, a specialized medical AI focused on retinal health. Provide helpful, empathetic advice. Always advise consulting a doctor. Keep responses concise."
+            content: user?.role === 'doctor' 
+              ? "You are an advanced Explainable AI (XAI) medical assistant for ophthalmologists. Provide high-level, professional clinical insights on retinal diseases like Diabetic Retinopathy, Glaucoma, and AMD. Use precise medical terminology. When discussing AI predictions, explain the pathological features (e.g., microaneurysms, exudates) that contributed to the decision to support clinical verification. Keep responses concise, analytical, and formatted with markdown."
+              : "You are EyeGuard AI, a friendly and empathetic educational assistant for general users. Explain retinal health, symptoms, and eye care simply and clearly without using confusing medical jargon. Focus on general wellness, early detection awareness, and healthy habits. Always remind the user that you are an AI and they should consult a human doctor for a real diagnosis. Keep responses warm, easy to understand, and formatted with markdown."
           },
           ...messages.map(m => ({
             role: m.isBot ? "assistant" : "user",

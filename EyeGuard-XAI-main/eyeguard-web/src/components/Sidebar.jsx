@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: Sidebar.jsx
+ * Location: components
+ * Purpose: Reusable UI component for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -52,6 +61,17 @@ const Sidebar = () => {
       >
         <span className="material-symbols-outlined">history</span>
         Clinical History
+      </NavLink>
+      <NavLink 
+        to="/chatbot" 
+        className={({ isActive }) => 
+          isActive 
+            ? "bg-[#5D1F1A] text-white rounded-lg mx-2 my-1 shadow-sm flex items-center gap-3 px-4 py-3 transition-all"
+            : "text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 mx-2 my-1 rounded-lg flex items-center gap-3 px-4 py-3 transition-all"
+        }
+      >
+        <span className="material-symbols-outlined">psychiatry</span>
+        XAI Assistant
       </NavLink>
       <NavLink 
         to="#" 

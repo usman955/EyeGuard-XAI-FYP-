@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: App.jsx
+ * Location: src
+ * Purpose: Core configuration, initialization, or entry point for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -32,6 +41,12 @@ const ProtectedUserRoute = ({ children }) => {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" />;
   if (user.role !== 'user') return <Navigate to="/dashboard/doctor" />;
+  return children;
+};
+
+const ProtectedSharedRoute = ({ children }) => {
+  const { user } = useAuth();
+  if (!user) return <Navigate to="/login" />;
   return children;
 };
 
@@ -127,11 +142,11 @@ function AppContent() {
       <Route 
         path="/chatbot" 
         element={
-          <ProtectedUserRoute>
+          <ProtectedSharedRoute>
             <DashboardLayout>
               <ChatBot />
             </DashboardLayout>
-          </ProtectedUserRoute>
+          </ProtectedSharedRoute>
         } 
       />
       

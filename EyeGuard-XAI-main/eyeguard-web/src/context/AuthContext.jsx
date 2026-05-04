@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: AuthContext.jsx
+ * Location: context
+ * Purpose: Global state management and context providers for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
@@ -39,12 +48,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async (name, email, password, role) => {
+  const register = async (name, email, password, role, license) => {
     try {
       const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, role })
+        body: JSON.stringify({ name, email, password, role, license })
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Registration failed');

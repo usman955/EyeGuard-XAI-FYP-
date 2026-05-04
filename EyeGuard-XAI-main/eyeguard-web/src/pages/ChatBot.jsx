@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: ChatBot.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -65,7 +74,9 @@ const ChatBot = () => {
           "messages": [
             {
               "role": "system",
-              "content": "You are EyeGuard AI Assistant, a specialized medical AI focused on retinal health and ophthalmology. Provide helpful, empathetic, and professional advice about eye diseases like Diabetic Retinopathy, Glaucoma, and AMD. Always advise consulting a doctor for definitive diagnoses. Keep responses concise and formatted with markdown."
+              "content": user?.role === 'doctor' 
+                ? "You are an advanced Explainable AI (XAI) medical assistant for ophthalmologists. Provide high-level, professional clinical insights on retinal diseases like Diabetic Retinopathy, Glaucoma, and AMD. Use precise medical terminology. When discussing AI predictions, explain the pathological features (e.g., microaneurysms, exudates) that contributed to the decision to support clinical verification. Keep responses concise, analytical, and formatted with markdown."
+                : "You are EyeGuard AI, a friendly and empathetic educational assistant for general users. Explain retinal health, symptoms, and eye care simply and clearly without using confusing medical jargon. Focus on general wellness, early detection awareness, and healthy habits. Always remind the user that you are an AI and they should consult a human doctor for a real diagnosis. Keep responses warm, easy to understand, and formatted with markdown."
             },
             ...messages.map(m => ({
               role: m.isBot ? "assistant" : "user",

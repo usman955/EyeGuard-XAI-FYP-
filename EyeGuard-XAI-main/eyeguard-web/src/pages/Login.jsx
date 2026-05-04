@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: Login.jsx
+ * Location: pages
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Web Dashboard.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -48,7 +57,7 @@ const Login = () => {
             <img 
               alt="EyeGuard AI concept" 
               className="w-full h-auto object-cover aspect-[1.54]" 
-              src="/images/retinal_scan.png" 
+              src="/sample_retina.png" 
             />
           </div>
         </div>

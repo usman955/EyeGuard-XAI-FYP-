@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: LandingScreen.js
+ * Location: screens
+ * Purpose: Main user interface screen/view for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { theme } from '../utils/theme';
@@ -13,7 +22,7 @@ export const LandingScreen = ({ navigation }) => {
     >
       <View style={styles.content}>
         <View style={styles.badge}>
-          <Text style={styles.badgeText}>✨ Next-Gen AI Screening Platform</Text>
+          <Text style={styles.badgeText}> Next-Gen AI Screening Platform</Text>
         </View>
 
         <Text style={styles.title}>

@@ -1,3 +1,12 @@
+/**
+ * ============================================================================
+ * File: AuthContext.js
+ * Location: context
+ * Purpose: Global state management and context providers for the EyeGuard-XAI Mobile Application.
+ * This file is part of the EyeGuard-XAI automated screening system.
+ * ============================================================================
+ */
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
