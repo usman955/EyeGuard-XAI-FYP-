@@ -7,17 +7,24 @@
  * ============================================================================
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const DoctorHistory = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  
   const historyData = [
-    { id: 'PAT-2024-001', name: 'James Wilson', date: '2024-05-01', diagnosis: 'Diabetic Retinopathy', severity: 'Moderate', status: 'Completed' },
-    { id: 'PAT-2024-002', name: 'Maria Garcia', date: '2024-04-28', diagnosis: 'Normal', severity: 'None', status: 'Completed' },
-    { id: 'PAT-2024-003', name: 'Robert Chen', date: '2024-04-25', diagnosis: 'Glaucoma suspected', severity: 'Mild', status: 'Follow-up' },
-    { id: 'PAT-2024-004', name: 'Sarah Miller', date: '2024-04-20', diagnosis: 'AMD', severity: 'Severe', status: 'Emergency' },
-    { id: 'PAT-2024-005', name: 'Michael Brown', date: '2024-04-18', diagnosis: 'Normal', severity: 'None', status: 'Completed' },
+    { id: 'PAT-2026-001', name: 'James Wilson', date: '2026-05-01', diagnosis: 'Diabetic Retinopathy', severity: 'Moderate', status: 'Completed' },
+    { id: 'PAT-2026-002', name: 'Maria Garcia', date: '2026-04-28', diagnosis: 'Normal', severity: 'None', status: 'Completed' },
+    { id: 'PAT-2026-003', name: 'Robert Chen', date: '2026-04-25', diagnosis: 'Glaucoma suspected', severity: 'Mild', status: 'Follow-up' },
+    { id: 'PAT-2026-004', name: 'Sarah Miller', date: '2026-04-20', diagnosis: 'AMD', severity: 'Severe', status: 'Emergency' },
+    { id: 'PAT-2026-005', name: 'Michael Brown', date: '2026-04-18', diagnosis: 'Normal', severity: 'None', status: 'Completed' },
   ];
+
+  const filteredData = historyData.filter(record => 
+    record.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    record.id.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="p-lg w-full animate-fade-in">
@@ -32,6 +39,8 @@ const DoctorHistory = () => {
             <input 
               type="text" 
               placeholder="Search by Patient ID or Name" 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="bg-surface-container-low border border-outline-variant/30 rounded-full py-2 pl-10 pr-6 text-sm focus:outline-none focus:border-primary-container w-64 transition-all"
             />
           </div>
@@ -55,7 +64,7 @@ const DoctorHistory = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-outline-variant/10">
-            {historyData.map((record, index) => (
+            {filteredData.map((record, index) => (
               <tr key={index} className="hover:bg-surface-container-high/30 transition-colors">
                 <td className="px-6 py-4">
                   <div className="font-data-mono text-xs font-bold text-primary">{record.id}</div>
@@ -89,6 +98,13 @@ const DoctorHistory = () => {
                 </td>
               </tr>
             ))}
+            {filteredData.length === 0 && (
+              <tr>
+                <td colSpan="6" className="px-6 py-12 text-center text-on-surface-variant font-body-md">
+                  No matching clinical records found for "{searchTerm}"
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

@@ -11,6 +11,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AuthContext = createContext(null);
+const API_URL = 'http://192.168.1.14:5000/api';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -22,8 +23,10 @@ export const AuthProvider = ({ children }) => {
 
   const loadStoredData = async () => {
     try {
+      // Load current session user
       const storedUser = await AsyncStorage.getItem('eyeguard_user');
-      if (storedUser) {
+      const token = await AsyncStorage.getItem('eyeguard_token');
+      if (storedUser && token) {
         setUser(JSON.parse(storedUser));
       }
     } catch (e) {
@@ -33,42 +36,54 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (email, password) => {
-    // Mock login based on email
-    let role = 'user';
-    if (email.includes('doctor')) {
-      role = 'doctor';
+  const login = async (email, password, role) => {
+    try {
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), password, role })
+      });
+      
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Login failed');
+      
+      setUser(data.user);
+      await AsyncStorage.setItem('eyeguard_user', JSON.stringify(data.user));
+      await AsyncStorage.setItem('eyeguard_token', data.token);
+      return data.user;
+    } catch (err) {
+      throw err;
     }
-
-    const mockUser = {
-      id: 'usr_123',
-      name: role === 'doctor' ? 'Dr. Smith' : 'John Doe',
-      email: email,
-      role: role
-    };
-
-    setUser(mockUser);
-    await AsyncStorage.setItem('eyeguard_user', JSON.stringify(mockUser));
-    return mockUser;
   };
 
   const signup = async (userData) => {
-    // userData contains { name, email, password, role, licenseNumber (if doctor) }
-    const mockUser = {
-      id: 'usr_456',
-      name: userData.name,
-      email: userData.email,
-      role: userData.role || 'user'
-    };
+    try {
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          name: userData.name, 
+          email: userData.email.trim(), 
+          password: userData.password, 
+          role: userData.role, 
+          license: userData.license 
+        })
+      });
+      
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Registration failed');
 
-    setUser(mockUser);
-    await AsyncStorage.setItem('eyeguard_user', JSON.stringify(mockUser));
-    return mockUser;
+      // No auto-login, redirect to sign-in handled by RegisterScreen
+      return { success: true };
+    } catch (err) {
+      throw err;
+    }
   };
 
   const logout = async () => {
     setUser(null);
     await AsyncStorage.removeItem('eyeguard_user');
+    await AsyncStorage.removeItem('eyeguard_token');
   };
 
   return (

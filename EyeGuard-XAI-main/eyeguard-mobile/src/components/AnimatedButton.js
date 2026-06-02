@@ -23,7 +23,7 @@ export const AnimatedButton = ({
     return (
       <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={[styles.base, style]}>
         <LinearGradient
-          colors={['#00d4ff', '#0088ff']}
+          colors={[theme.colors.primary, theme.colors.primaryDark]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.gradient}
@@ -47,31 +47,32 @@ export const AnimatedButton = ({
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: theme.radius.full,
+    borderRadius: theme.borderRadius.xl,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
+    ...theme.shadows.button,
   },
   gradient: {
-    paddingVertical: theme.spacing.md,
+    paddingVertical: theme.spacing.m,
     paddingHorizontal: theme.spacing.xl,
     width: '100%',
     alignItems: 'center',
   },
   secondary: {
-    paddingVertical: theme.spacing.md,
+    paddingVertical: theme.spacing.m,
     paddingHorizontal: theme.spacing.xl,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: theme.colors.surface,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
+    borderColor: theme.colors.border,
   },
   primaryText: {
-    color: '#050b14',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 16,
   },
   secondaryText: {
-    color: theme.colors.textPrimary,
+    color: theme.colors.primary,
     fontWeight: 'bold',
     fontSize: 16,
   }

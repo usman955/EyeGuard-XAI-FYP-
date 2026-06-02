@@ -18,7 +18,7 @@ const DoctorDashboard = () => {
     <div className="pb-24 md:pb-lg p-margin md:p-lg w-full animate-fade-in">
       <div className="flex justify-between items-end mb-8">
         <div>
-          <h2 className="font-h2 text-h2 text-on-background mb-2">Welcome back, {user?.name || 'Dr. Smith'}</h2>
+          <h2 className="font-h2 text-h2 text-on-background mb-2">Welcome back, {user?.name || 'Professional'}</h2>
           <p className="font-body-lg text-body-lg text-on-surface-variant">Here is your daily overview of patient screenings.</p>
         </div>
       </div>

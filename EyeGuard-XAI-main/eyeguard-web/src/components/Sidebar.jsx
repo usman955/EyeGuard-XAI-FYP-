@@ -135,7 +135,7 @@ const Sidebar = () => {
           <span className="material-symbols-outlined text-on-surface-variant text-h2">person</span>
         </div>
         <div>
-          <div className="font-bold text-[#5D1F1A] dark:text-red-300 text-lg leading-tight">{user?.name || (isDoctor ? 'Dr. Smith' : 'Patient')}</div>
+          <div className="font-bold text-[#5D1F1A] dark:text-red-300 text-lg leading-tight">{user?.name || 'Authorized User'}</div>
           <div className="text-[10px] uppercase tracking-widest text-stone-500 font-bold mt-1">{isDoctor ? 'Medical Lead' : 'General User'}</div>
         </div>
       </div>

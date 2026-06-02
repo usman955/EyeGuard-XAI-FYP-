@@ -56,7 +56,7 @@ const UserDashboard = () => {
           </Link>
           
           {/* Edu Card 2 */}
-          <Link to="/chatbot?topic=analysis" className="bg-surface-container-lowest rounded-[32px] p-md border border-outline-variant/30 shadow-sm flex flex-col gap-sm hover:-translate-y-2 transition-all relative overflow-hidden group">
+          <Link to="/ai-insights" className="bg-surface-container-lowest rounded-[32px] p-md border border-outline-variant/30 shadow-sm flex flex-col gap-sm hover:-translate-y-2 transition-all relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-2 bg-primary-container opacity-20 transition-all group-hover:h-3 group-hover:opacity-100"></div>
             <div className="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container mb-xs">
               <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>psychology</span>

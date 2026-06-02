@@ -24,6 +24,7 @@ import DoctorRetinalScans from './pages/DoctorRetinalScans';
 import Screening from './pages/Screening';
 import ChatBot from './pages/ChatBot';
 import About from './pages/About';
+import AIInsights from './pages/AIInsights';
 
 // Components
 import DashboardLayout from './components/DashboardLayout';
@@ -137,6 +138,16 @@ function AppContent() {
               <UserScanResult />
             </DashboardLayout>
           </ProtectedUserRoute>
+        } 
+      />
+      <Route 
+        path="/ai-insights" 
+        element={
+          <ProtectedSharedRoute>
+            <DashboardLayout>
+              <AIInsights />
+            </DashboardLayout>
+          </ProtectedSharedRoute>
         } 
       />
       <Route 

@@ -8,7 +8,7 @@
  */
 
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
@@ -16,21 +16,32 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // New state for mode selection
   const [selectedMode, setSelectedMode] = useState('doctor'); // 'doctor' or 'user'
 
+  // Pre-fill data if coming from registration
+  React.useEffect(() => {
+    if (location.state?.prefilledEmail) {
+      setEmail(location.state.prefilledEmail);
+    }
+    if (location.state?.prefilledRole) {
+      setSelectedMode(location.state.prefilledRole);
+    }
+  }, [location.state]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const user = await login(email, password);
+      const user = await login(email, password, selectedMode);
       if (user.role === 'doctor') {
         navigate('/dashboard/doctor');
       } else {
         navigate('/dashboard/user');
       }
     } catch (err) {
-      alert(err.message || 'Invalid email or password. \n\nTry:\ndoctor@eyeguard.com / password\nuser@eyeguard.com / password');
+      alert(err.message || 'Invalid email or password.');
     }
   };
 

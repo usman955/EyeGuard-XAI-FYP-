@@ -12,6 +12,7 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, Keyboa
 import { Send, Bot, User } from 'lucide-react-native';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { theme } from '../utils/theme';
 
 const OPENROUTER_API_KEY = ''; // Add your OpenRouter API Key here
 
@@ -79,14 +80,14 @@ const ChatScreen = () => {
       >
         {messages.map((msg, i) => (
           <View key={i} style={[styles.messageWrapper, msg.isBot ? styles.botWrapper : styles.userWrapper]}>
-            {msg.isBot && <Bot size={20} color="#5D1F1A" style={{ marginBottom: 4 }} />}
+            {msg.isBot && <Bot size={20} color={theme.colors.primary} style={{ marginBottom: 4 }} />}
             <View style={[styles.bubble, msg.isBot ? styles.botBubble : styles.userBubble]}>
               <Text style={[styles.messageText, msg.isBot ? styles.botText : styles.userText]}>{msg.text}</Text>
             </View>
           </View>
         ))}
         {isLoading && (
-          <ActivityIndicator color="#5D1F1A" style={{ alignSelf: 'flex-start', marginLeft: 20 }} />
+          <ActivityIndicator color={theme.colors.primary} style={{ alignSelf: 'flex-start', marginLeft: 20 }} />
         )}
       </ScrollView>
 
@@ -109,7 +110,7 @@ const ChatScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.background,
   },
   chatArea: {
     flex: 1,
@@ -129,11 +130,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   botBubble: {
-    backgroundColor: '#f1f5f9',
+    backgroundColor: theme.colors.surface,
     borderTopLeftRadius: 4,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
   },
   userBubble: {
-    backgroundColor: '#5D1F1A',
+    backgroundColor: theme.colors.primary,
     borderTopRightRadius: 4,
   },
   messageText: {
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   botText: {
-    color: '#1e293b',
+    color: theme.colors.text,
   },
   userText: {
     color: '#fff',
@@ -151,24 +154,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderTopWidth: 1,
-    borderTopColor: '#f1f5f9',
+    borderTopColor: theme.colors.border,
     paddingBottom: Platform.OS === 'ios' ? 24 : 12,
+    backgroundColor: theme.colors.surface,
   },
   input: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: theme.colors.background,
     borderRadius: 24,
     paddingHorizontal: 16,
     paddingVertical: 10,
     maxHeight: 100,
     fontSize: 16,
     marginRight: 8,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
   },
   sendBtn: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: '#5D1F1A',
+    backgroundColor: theme.colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   }

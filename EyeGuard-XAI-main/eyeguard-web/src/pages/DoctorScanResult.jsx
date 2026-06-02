@@ -8,9 +8,12 @@
  */
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const DoctorScanResult = () => {
   const [heatmapOpacity, setHeatmapOpacity] = useState(0.7);
+  const [observations, setObservations] = useState('');
+  const [viewMode, setViewMode] = useState('overlay'); // 'overlay' or 'split'
 
   return (
     <div className="bg-organic-wave max-w-[1440px] mx-auto p-margin md:p-lg">
@@ -21,7 +24,7 @@ const DoctorScanResult = () => {
           <p className="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
             <span className="font-data-mono text-data-mono font-bold text-primary">ID: PAT-8842-A</span>
             <span className="opacity-50">•</span>
-            <span>Scan Date: Oct 24, 2023</span>
+            <span>Scan Date: {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
             <span className="opacity-50">•</span>
             <span>Right Eye (OD)</span>
           </p>
@@ -42,26 +45,48 @@ const DoctorScanResult = () => {
               <span className="material-symbols-outlined text-primary">visibility</span> Retinal Imaging
             </h2>
             <div className="flex gap-2 bg-surface-variant p-1 rounded-lg">
-              <button className="px-3 py-1 text-on-surface-variant font-label-caps text-label-caps hover:bg-surface/50 rounded-md">Split View</button>
-              <button className="px-3 py-1 bg-surface shadow-sm rounded-md font-label-caps text-label-caps text-on-surface">Overlay</button>
+              <button 
+                onClick={() => setViewMode('split')}
+                className={`px-3 py-1 font-label-caps text-label-caps rounded-md transition-all ${viewMode === 'split' ? 'bg-surface shadow-sm text-on-surface' : 'text-on-surface-variant hover:bg-surface/50'}`}
+              >
+                Split View
+              </button>
+              <button 
+                onClick={() => setViewMode('overlay')}
+                className={`px-3 py-1 font-label-caps text-label-caps rounded-md transition-all ${viewMode === 'overlay' ? 'bg-surface shadow-sm text-on-surface' : 'text-on-surface-variant hover:bg-surface/50'}`}
+              >
+                Overlay
+              </button>
             </div>
           </div>
           
           <div className="flex-1 p-4 bg-surface-container-low flex flex-col gap-4">
             {/* Main Interactive Viewer */}
-            <div className="relative rounded-lg overflow-hidden border border-outline-variant/30 aspect-[2] bg-surface-variant flex items-center justify-center">
-              {/* Base Original Scan */}
-              <img alt="Retinal fundus scan image" className="absolute inset-0 w-full h-full object-cover" src="/images/retinal_scan.png" />
-              
-              {/* Grad-CAM Overlay */}
-              <img 
-                alt="Grad-CAM heatmap visualization" 
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200" 
-                src="/images/gradcam_scan.png" 
-                style={{ opacity: heatmapOpacity }}
-                mix-blend-mode="multiply"
-              />
-            </div>
+            {viewMode === 'overlay' ? (
+              <div className="relative rounded-lg overflow-hidden border border-outline-variant/30 aspect-[2] bg-surface-variant flex items-center justify-center">
+                {/* Base Original Scan */}
+                <img alt="Retinal fundus scan image" className="absolute inset-0 w-full h-full object-cover" src="/images/retinal_scan.png" />
+                
+                {/* Grad-CAM Overlay */}
+                <img 
+                  alt="Grad-CAM heatmap visualization" 
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-200" 
+                  src="/images/gradcam_scan.png" 
+                  style={{ opacity: heatmapOpacity }}
+                />
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-4 h-full aspect-[2]">
+                <div className="relative rounded-lg overflow-hidden border border-outline-variant/30 bg-surface-variant">
+                  <img alt="Original scan" className="w-full h-full object-cover" src="/images/retinal_scan.png" />
+                  <div className="absolute top-2 left-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded-md uppercase font-bold">Original</div>
+                </div>
+                <div className="relative rounded-lg overflow-hidden border border-outline-variant/30 bg-surface-variant">
+                  <img alt="Heatmap scan" className="w-full h-full object-cover" src="/images/gradcam_scan.png" />
+                  <div className="absolute top-2 left-2 bg-primary/80 text-white text-[10px] px-2 py-1 rounded-md uppercase font-bold">XAI Heatmap</div>
+                </div>
+              </div>
+            )}
             
             {/* Opacity Control */}
             <div className="bg-surface rounded-lg p-4 border border-outline-variant/30 flex items-center gap-4">
@@ -145,13 +170,13 @@ const DoctorScanResult = () => {
             {/* XAI Assistant Link */}
             <div className="mt-6 pt-6 border-t border-outline-variant/30">
               <p className="font-body-md text-sm text-on-surface-variant mb-3">Need deeper clinical insights on these probabilities?</p>
-              <a 
-                href="/chatbot?topic=clinical_review" 
+              <Link 
+                to="/chatbot?topic=clinical_review" 
                 className="w-full py-3 bg-[#5D1F1A] hover:bg-[#410a07] text-white rounded-xl font-body-md shadow-md flex justify-center items-center gap-2 transition-colors"
               >
                 <span className="material-symbols-outlined text-[20px]">psychiatry</span>
                 Discuss with XAI Assistant
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -168,11 +193,26 @@ const DoctorScanResult = () => {
             <textarea 
               className="w-full h-32 bg-surface-container-low border-b-2 border-outline focus:border-primary border-t-0 border-x-0 rounded-t-lg p-4 font-body-md text-body-md text-on-surface focus:ring-0 resize-none transition-colors" 
               placeholder="Enter specific findings, refer to XAI heatmaps..."
+              value={observations}
+              onChange={(e) => setObservations(e.target.value)}
             ></textarea>
           </div>
           <div className="mt-4 flex justify-end gap-3">
-            <button className="px-6 py-2 border border-primary text-primary rounded-full font-body-md hover:bg-primary/5 transition-colors">Clear</button>
-            <button className="px-6 py-2 bg-primary text-on-primary rounded-full font-body-md shadow-md hover:shadow-lg transition-all">Sign &amp; Finalize</button>
+            <button 
+              onClick={() => setObservations('')}
+              className="px-6 py-2 border border-primary text-primary rounded-full font-body-md hover:bg-primary/5 transition-colors"
+            >
+              Clear
+            </button>
+            <button 
+              onClick={() => {
+                if (!observations.trim()) return alert('Please enter clinical findings before finalizing.');
+                alert('Report signed and finalized successfully!');
+              }}
+              className="px-6 py-2 bg-primary text-on-primary rounded-full font-body-md shadow-md hover:shadow-lg transition-all"
+            >
+              Sign & Finalize
+            </button>
           </div>
         </div>
       </div>

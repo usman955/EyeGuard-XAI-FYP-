@@ -44,10 +44,22 @@ const ImageUploader = ({ onImageSelect, patientIdRequired = false }) => {
   };
 
   const processFile = (file) => {
-    if (!file.type.match('image.*')) {
-      setError('Please select a valid image file (JPG, PNG).');
+    // 1. Check if it's a video or other non-image type
+    if (!file.type.startsWith('image/')) {
+      setError('Image is not correct. Please select a valid image file (Videos are not allowed).');
       return;
     }
+
+    // 2. Check file size (5MB = 5 * 1024 * 1024 bytes)
+    if (file.size > 5 * 1024 * 1024) {
+      setError('Image must be less than or equal to 5 MB.');
+      return;
+    }
+
+    // 3. Simulated eye-check (Placeholder for future ML verification)
+    // For now, we accept all images under 5MB, but we provide the error if 
+    // the user wants to simulate a failed "eye detection" check.
+    
     setError('');
     setSelectedFile(file);
     
@@ -93,7 +105,7 @@ const ImageUploader = ({ onImageSelect, patientIdRequired = false }) => {
               type="text"
               value={patientId}
               onChange={(e) => setPatientId(e.target.value)}
-              placeholder="e.g. PAT-2024-001"
+              placeholder="e.g. PAT-2026-001"
               className="w-full bg-surface-container border-b-2 border-surface-variant px-md py-sm pl-10 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary-container focus:bg-surface-container-low transition-colors rounded-t-md"
             />
           </div>

@@ -17,7 +17,7 @@ import { AnimatedButton } from '../components/AnimatedButton';
 export const LandingScreen = ({ navigation }) => {
   return (
     <LinearGradient
-      colors={[theme.colors.background, theme.colors.backgroundSecondary]}
+      colors={[theme.colors.background, theme.colors.surface]}
       style={styles.container}
     >
       <View style={styles.content}>
@@ -35,15 +35,15 @@ export const LandingScreen = ({ navigation }) => {
         </Text>
 
         <View style={styles.buttonContainer}>
-          <AnimatedButton 
-            variant="primary" 
+          <AnimatedButton
+            variant="primary"
             style={styles.button}
-            onPress={() => navigation.navigate('Register')}
+            onPress={() => navigation.navigate('Login')}
           >
             Start Screening Now
           </AnimatedButton>
-          <AnimatedButton 
-            variant="secondary" 
+          <AnimatedButton
+            variant="secondary"
             style={styles.button}
             onPress={() => navigation.navigate('Login')}
           >
@@ -53,8 +53,8 @@ export const LandingScreen = ({ navigation }) => {
 
         <GlassCard style={styles.card}>
           <Text style={styles.cardTitle}>Mobile Features</Text>
-          <Text style={styles.cardText}>• Instant Analysis via Camera</Text>
-          <Text style={styles.cardText}>• On-the-go Chatbot Assistant</Text>
+          <Text style={styles.cardText}>• Instant Retinal Analysis</Text>
+          <Text style={styles.cardText}>• Chatbot Assistant</Text>
           <Text style={styles.cardText}>• Explainable AI Heatmaps</Text>
         </GlassCard>
       </View>
@@ -76,24 +76,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 212, 255, 0.1)',
     borderColor: 'rgba(0, 212, 255, 0.2)',
     borderWidth: 1,
-    paddingVertical: theme.spacing.sm,
-    paddingHorizontal: theme.spacing.md,
-    borderRadius: theme.radius.full,
+    paddingVertical: theme.spacing.s,
+    paddingHorizontal: theme.spacing.m,
+    borderRadius: 100,
     marginBottom: theme.spacing.xl,
   },
   badgeText: {
-    color: theme.colors.accentPrimary,
+    color: theme.colors.primary,
     fontWeight: 'bold',
   },
   title: {
     fontSize: 40,
     fontWeight: 'bold',
-    color: theme.colors.textPrimary,
+    color: theme.colors.text,
     textAlign: 'center',
-    marginBottom: theme.spacing.md,
+    marginBottom: theme.spacing.m,
   },
   titleHighlight: {
-    color: theme.colors.accentPrimary,
+    color: theme.colors.primary,
   },
   subtitle: {
     fontSize: 16,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: '100%',
-    gap: theme.spacing.md,
+    gap: theme.spacing.m,
     marginBottom: theme.spacing.xxl,
   },
   button: {
@@ -113,10 +113,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   cardTitle: {
-    color: theme.colors.accentPrimary,
+    color: theme.colors.primary,
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: theme.spacing.sm,
+    marginBottom: theme.spacing.s,
   },
   cardText: {
     color: theme.colors.textSecondary,

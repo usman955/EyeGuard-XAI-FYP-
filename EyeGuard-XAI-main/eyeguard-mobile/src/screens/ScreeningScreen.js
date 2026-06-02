@@ -39,7 +39,15 @@ const ScreeningScreen = ({ navigation }) => {
     }
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      const asset = result.assets[0];
+
+      // Check File Size (5MB)
+      if (asset.fileSize && asset.fileSize > 5 * 1024 * 1024) {
+        Alert.alert("Error", "Image must be less than or equal to 5 MB.");
+        return;
+      }
+
+      setImage(asset.uri);
       setResult(null);
     }
   };
@@ -78,7 +86,7 @@ const ScreeningScreen = ({ navigation }) => {
               <Text style={styles.secondaryBtnText}>Choose Gallery</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.sampleBtn} onPress={() => setImage(Image.resolveAssetSource(require('../../assets/retinal_scan.png')).uri)}>
+            <TouchableOpacity style={styles.sampleBtn} onPress={() => setImage(Image.resolveAssetSource(require('../../assets/images/retinal_scan.png')).uri)}>
               <Text style={styles.sampleBtnText}>Load Sample Scan</Text>
             </TouchableOpacity>
           </View>

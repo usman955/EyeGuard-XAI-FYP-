@@ -38,13 +38,13 @@ const UserScanResult = () => {
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-fixed-dim via-primary to-primary-container"></div>
         <p className="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm tracking-wider">Overall Status</p>
         
-        {/* Risk Level Badge: Moderate */}
-        <div className="flex items-center justify-center bg-secondary-container text-on-secondary-container px-lg py-sm rounded-full mb-md shadow-sm">
-          <span className="material-symbols-outlined mr-sm text-[32px]">info</span>
-          <span className="font-h2 text-h2 text-on-secondary-container">Moderate Attention</span>
+        {/* Risk Level Badge: Critical */}
+        <div className="flex items-center justify-center bg-error-container text-on-error-container px-lg py-sm rounded-full mb-md shadow-sm border border-error/20">
+          <span className="material-symbols-outlined mr-sm text-[32px]">warning</span>
+          <span className="font-h2 text-h2 text-on-error-container uppercase tracking-tight">Glaucoma & DR Detected</span>
         </div>
         <p className="font-body-lg text-body-lg text-on-surface max-w-2xl mt-sm">
-          Our AI has analyzed your recent scan. While there are no immediate critical issues, we noticed a few areas that could use a closer look from a professional.
+          Our AI has identified high-confidence biomarkers for <span className="font-bold text-error">Glaucoma</span> and <span className="font-bold text-error">Diabetic Retinopathy</span>. Immediate clinical intervention is advised.
         </p>
         
         {/* Simple AI Explanation */}

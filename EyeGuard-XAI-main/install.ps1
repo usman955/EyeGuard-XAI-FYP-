@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 Write-Host "Installing dependencies for EyeGuard-XAI..."
 
 # Define the absolute root directory of the project
-$ROOT_DIR = "c:\Users\Talha Hanif\EyeGuard-XAI-FYP-\EyeGuard-XAI-main"
+$ROOT_DIR = $PSScriptRoot
 
 # ------------------------------------------------------------------------------
 # 1. Web Frontend (React/Vite)

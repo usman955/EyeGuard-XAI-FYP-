@@ -30,14 +30,14 @@ Start-Process powershell -ArgumentList "-ExecutionPolicy", "Bypass", "-NoExit", 
 # Runs the clinical dashboard and diagnostic web interface on Port 5173.
 # ------------------------------------------------------------------------------
 Write-Host "Starting Web Frontend (Port 5173)..."
-Start-Process powershell -ArgumentList "-ExecutionPolicy", "Bypass", "-NoExit", "-Command", "cd '$ROOT_DIR\eyeguard-web'; npm run dev" -WorkingDirectory "$ROOT_DIR\eyeguard-web"
+Start-Process powershell -ArgumentList "-ExecutionPolicy", "Bypass", "-NoExit", "-Command", "cd '$ROOT_DIR\eyeguard-web'; npm run dev -- --host" -WorkingDirectory "$ROOT_DIR\eyeguard-web"
 
 # ------------------------------------------------------------------------------
 # 4. Mobile App (Expo / React Native)
 # Runs the mobile app bundler. Will display a QR code in the terminal to scan.
 # ------------------------------------------------------------------------------
 Write-Host "Starting Mobile App (Expo)..."
-Start-Process powershell -ArgumentList "-ExecutionPolicy", "Bypass", "-NoExit", "-Command", "cd '$ROOT_DIR\eyeguard-mobile'; npx expo start" -WorkingDirectory "$ROOT_DIR\eyeguard-mobile"
+Start-Process powershell -ArgumentList "-ExecutionPolicy", "Bypass", "-NoExit", "-Command", "cd '$ROOT_DIR\eyeguard-mobile'; npx expo start -c" -WorkingDirectory "$ROOT_DIR\eyeguard-mobile"
 
 Write-Host "All services are initializing!"
 Write-Host "- Web: http://localhost:5173"

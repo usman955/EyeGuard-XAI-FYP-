@@ -12,10 +12,10 @@ import { Link } from 'react-router-dom';
 
 const DoctorRetinalScans = () => {
   const scans = [
-    { id: 'SCN-001', patientId: 'PAT-2024-001', patientName: 'James Wilson', type: 'Color Fundus', date: '2024-05-01', aiFlag: 'DR Detected', risk: 'High' },
-    { id: 'SCN-002', patientId: 'PAT-2024-002', patientName: 'Maria Garcia', type: 'Color Fundus', date: '2024-04-28', aiFlag: 'Clear', risk: 'Normal' },
-    { id: 'SCN-003', patientId: 'PAT-2024-003', patientName: 'Robert Chen', type: 'Red-free Fundus', date: '2024-04-25', aiFlag: 'Glaucoma suspected', risk: 'Moderate' },
-    { id: 'SCN-004', patientId: 'PAT-2024-004', patientName: 'Sarah Miller', type: 'Color Fundus', date: '2024-04-20', aiFlag: 'AMD Detected', risk: 'Critical' },
+    { id: 'SCN-001', patientId: 'PAT-2026-001', patientName: 'James Wilson', type: 'Color Fundus', date: '2026-05-01', aiFlag: 'DR Detected', risk: 'High' },
+    { id: 'SCN-002', patientId: 'PAT-2026-002', patientName: 'Maria Garcia', type: 'Color Fundus', date: '2026-04-28', aiFlag: 'Clear', risk: 'Normal' },
+    { id: 'SCN-003', patientId: 'PAT-2026-003', patientName: 'Robert Chen', type: 'Red-free Fundus', date: '2026-04-25', aiFlag: 'Glaucoma suspected', risk: 'Moderate' },
+    { id: 'SCN-004', patientId: 'PAT-2026-004', patientName: 'Sarah Miller', type: 'Color Fundus', date: '2026-04-20', aiFlag: 'AMD Detected', risk: 'Critical' },
   ];
 
   return (

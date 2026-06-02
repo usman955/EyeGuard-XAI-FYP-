@@ -1,7 +1,6 @@
 /**
  * ============================================================================
  * File: index.js
- * Location: server
  * Purpose: Express.js server logic and database integration for the EyeGuard-XAI Web Dashboard.
  * This file is part of the EyeGuard-XAI automated screening system.
  * ============================================================================
@@ -40,34 +39,65 @@ const authenticate = (req, res, next) => {
 // --- Auth Routes ---
 
 app.post('/api/auth/register', async (req, res) => {
-  const { email, password, name, role, license } = req.body;
-  
+  const { name, email, password, role, license } = req.body;
+
+  if (!name || !email || !password || !role) {
+    return res.status(400).json({ error: 'Name, email, password, and role are required fields.' });
+  }
+
   if (role === 'doctor' && !license) {
-    return res.status(400).json({ error: 'Medical license is required for doctors' });
+    return res.status(400).json({ error: 'A Medical License Number is required for professional registration.' });
   }
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
-      data: { email, password: hashedPassword, name, role, license }
+      data: {
+        email: email.toLowerCase().trim(),
+        password: hashedPassword,
+        name,
+        role,
+        license: role === 'doctor' ? license : null
+      }
     });
-    const token = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET);
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role, license: user.license } });
+    res.json({ success: true, message: 'Registration successful' });
   } catch (err) {
-    res.status(400).json({ error: 'User already exists' });
+    console.error('Registration Database Error:', err);
+    if (err.code === 'P2002') {
+      return res.status(400).json({ error: 'This email is already registered. Please login instead.' });
+    }
+    res.status(500).json({ error: `Registration failed: ${err.message || 'Database error'}` });
   }
 });
 
 app.post('/api/auth/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
+
+  if (!email || !password || !role) {
+    return res.status(400).json({ error: 'Email, password, and role are required.' });
+  }
+
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+    const user = await prisma.user.findUnique({ where: { email: email.toLowerCase().trim() } });
+
+    if (!user) {
+      return res.status(401).json({ error: 'No account found with this email. Please register first.' });
     }
+
+    if (!(await bcrypt.compare(password, user.password))) {
+      return res.status(401).json({ error: 'Incorrect password. Please try again.' });
+    }
+
+    // Role verification (Strict)
+    if (user.role !== role) {
+      const actualRoleName = user.role === 'doctor' ? 'Medical Professional' : 'General User';
+      return res.status(403).json({ error: `Access Denied: This is a ${actualRoleName} account. Please use the correct login portal.` });
+    }
+
     const token = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET);
     res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
   } catch (err) {
+    console.error('Login Error:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -113,6 +143,25 @@ app.get('/api/screenings', authenticate, async (req, res) => {
   res.json(screenings);
 });
 
-app.listen(PORT, () => {
+const seedUsers = async () => {
+  const defaults = [
+    { email: 'doctor@eyeguard.com', password: 'password123', name: 'Dr. Smith', role: 'doctor', license: 'MD12345' },
+    { email: 'user@eyeguard.com', password: 'password123', name: 'John Doe', role: 'user' }
+  ];
+
+  for (const u of defaults) {
+    const existing = await prisma.user.findUnique({ where: { email: u.email } });
+    if (!existing) {
+      const hashedPassword = await bcrypt.hash(u.password, 10);
+      await prisma.user.create({
+        data: { ...u, password: hashedPassword }
+      });
+      console.log(`Seeded user: ${u.email}`);
+    }
+  }
+};
+
+app.listen(PORT, async () => {
+  await seedUsers();
   console.log(`Server running on http://localhost:${PORT}`);
 });

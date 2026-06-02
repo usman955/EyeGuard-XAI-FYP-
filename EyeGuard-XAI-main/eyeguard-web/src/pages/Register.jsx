@@ -67,12 +67,14 @@ const Register = () => {
     setIsLoading(true);
 
     try {
-      const user = await register(name, email, password, role, license);
-      if (user.role === 'doctor') {
-        navigate('/dashboard/doctor');
-      } else {
-        navigate('/dashboard/user');
-      }
+      await register(name, email, password, role, license);
+      alert('Registration successful! Please sign in with your new credentials.');
+      navigate('/login', { 
+        state: { 
+          prefilledEmail: email.toLowerCase().trim(), 
+          prefilledRole: role 
+        } 
+      });
     } catch (err) {
       setError(err.message || 'Failed to register');
     } finally {

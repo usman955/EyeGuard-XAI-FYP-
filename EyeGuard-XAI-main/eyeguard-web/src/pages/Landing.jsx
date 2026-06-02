@@ -7,10 +7,24 @@
  * ============================================================================
  */
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Landing = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      if (user.role === 'doctor') {
+        navigate('/dashboard/doctor');
+      } else {
+        navigate('/dashboard/user');
+      }
+    }
+  }, [user, navigate]);
+
   return (
     <div className="bg-background text-on-background min-h-screen font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
       {/* Hero Section with Organic Wave */}
@@ -137,7 +151,7 @@ const Landing = () => {
             <a href="#" className="hover:text-primary-container transition-colors">Terms of Service</a>
           </div>
           <div className="text-stone-400 text-sm font-data-mono">
-            © 2024 EyeGuard-XAI
+            © 2026 EyeGuard-XAI
           </div>
         </div>
       </footer>

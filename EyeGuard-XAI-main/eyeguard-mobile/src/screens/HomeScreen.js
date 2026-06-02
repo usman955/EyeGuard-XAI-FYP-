@@ -24,7 +24,7 @@ const HomeScreen = () => {
         </View>
         <TouchableOpacity style={styles.profileBtn}>
           <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=100&auto=format&fit=crop' }} 
+            source={require('../../assets/images/retinal_scan.png')} 
             style={styles.avatar}
           />
         </TouchableOpacity>

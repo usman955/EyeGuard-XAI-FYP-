@@ -12,10 +12,10 @@ import { View, StyleSheet } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { theme } from '../utils/theme';
 
-export const GlassCard = ({ children, style }) => {
+export const GlassCard = ({ children, style, intensity = 40 }) => {
   return (
     <View style={[styles.container, style]}>
-      <BlurView intensity={20} tint="dark" style={styles.blur}>
+      <BlurView intensity={intensity} tint="light" style={styles.blur}>
         {children}
       </BlurView>
     </View>
@@ -24,13 +24,14 @@ export const GlassCard = ({ children, style }) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: theme.radius.lg,
+    borderRadius: theme.borderRadius.l,
     overflow: 'hidden',
-    borderColor: theme.colors.surfaceBorder,
+    borderColor: 'rgba(255, 255, 255, 0.4)',
     borderWidth: 1,
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.surfaceGlass,
+    ...theme.shadows.glass,
   },
   blur: {
-    padding: theme.spacing.lg,
+    padding: theme.spacing.m,
   }
 });

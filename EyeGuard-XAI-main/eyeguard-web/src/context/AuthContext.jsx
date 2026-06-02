@@ -10,7 +10,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
-const API_URL = 'http://localhost:5000/api';
+const API_URL = `http://${window.location.hostname}:5000/api`;
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email, password, role) => {
     try {
       const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password, role })
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Login failed');
@@ -58,10 +58,9 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Registration failed');
 
-      setUser(data.user);
-      localStorage.setItem('eyeguard_user', JSON.stringify(data.user));
-      localStorage.setItem('eyeguard_token', data.token);
-      return data.user;
+      // We no longer auto-login here. 
+      // The user will be redirected to the sign-in page.
+      return { success: true };
     } catch (err) {
       throw err;
     }
